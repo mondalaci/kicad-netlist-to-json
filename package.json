@@ -1,0 +1,20 @@
+{
+  "name": "kicadnet2csv",
+  "version": "0.0.1",
+  "description": "KiCad netlist to CSV converter",
+  "main": "kicadnet2csv.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mondalaci/kicadnet2csv.git"
+  },
+  "author": "Laszlo Monda",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/mondalaci/kicadnet2csv/issues"
+  },
+  "homepage": "https://github.com/mondalaci/kicadnet2csv",
+  "dependencies": {
+    "is-array": "^1.0.1",
+    "s-expression": "^3.0.1"
+  }
+}
