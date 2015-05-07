@@ -4,7 +4,7 @@ Converts KiCad netlist files to JSON.
 
 First, `npm install kicad-netlist-to-json`
 
-Then let's take a KiCad netlist file like [uhk-left-main.net](test/uhk-left-main.net) and...
+Then let's take a KiCad netlist file like [uhk-left-main.net](test/uhk-left-main.net) and
 
 ```
 var fs = require('fs');
