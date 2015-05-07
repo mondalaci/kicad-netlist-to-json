@@ -1,7 +1,7 @@
 {
-  "name": "kicadnet2csv",
+  "name": "kicad-netlist-to-json",
   "version": "0.0.1",
-  "description": "KiCad netlist to CSV converter",
+  "description": "KiCad netlist to JSON converter",
   "main": "index.js",
   "repository": {
     "type": "git",
