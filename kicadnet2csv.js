@@ -17,6 +17,7 @@ function objectify(input) {
 }
 
 function unnestify(input) {
+    var key;
     input = stringify(input);
     var output = {};
 
@@ -34,7 +35,7 @@ function unnestify(input) {
                 return;
             }
 
-            for (var key in obj) {
+            for (key in obj) {
                 var objVal = unnestify(obj[key]);
                 if (!(key in output)) {
                     output[key] = [objVal];
@@ -44,14 +45,14 @@ function unnestify(input) {
             }
         });
 
-        for (var key in output) {
+        for (key in output) {
             var array = output[key];
             if (array.length === 1) {
                 output[key] = array[0];
             }
         }
     } else {  // object
-        for (var key in input) {
+        for (key in input) {
             if (input.hasOwnProperty(key)) {
                 output[key] = unnestify(input[key]);
             }
