@@ -1,6 +1,11 @@
 # kicad-netlist-to-json.js
 
-Converts KiCad netlist files to JSON.
+KiCad netlist to JSON converter.
+
+[![npm module](https://badge.fury.io/js/kicad-netlist-to-json.svg)](https://www.npmjs.org/package/kicad-netlist-to-json)
+[![dependencies](https://david-dm.org/mondalaci/kicad-netlist-to-json.svg)](https://david-dm.org/mondalaci/kicad-netlist-to-json)
+
+# Usage
 
 First, `npm install kicad-netlist-to-json`
 
