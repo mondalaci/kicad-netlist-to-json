@@ -28,8 +28,6 @@ function unnestify(input) {
     }
 
     if (isArray(input)) {
-        var output = {};
-//        console.log('unnestify array:', JSON.stringify(input, null, 4));
         input.forEach(function(obj) {
             if (typeof obj === 'string') {
                 if (!output.$) {
