@@ -9,8 +9,9 @@ Then let's take a KiCad netlist file like [uhk-left-main.net](test/uhk-left-main
 ```
 var fs = require('fs');
 var kicadNetlistToJson = require('kicad-netlist-to-json');
-var kicadNetlist = fs.readFileSync('node_modules/kicad-netlist-to-json/test/uhk-left-main.net',
-                                   {encoding:'utf8'});
+var kicadNetlist = fs.readFileSync(
+    'node_modules/kicad-netlist-to-json/test/uhk-left-main.net',
+    {encoding:'utf8'});
 console.log(JSON.stringify(kicadNetlistToJson(kicadNetlist), null, 4));
 ```
 
