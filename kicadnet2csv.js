@@ -26,14 +26,23 @@ function unnestify(input) {
     if (typeof input === 'string') {
         return input;
     }
-    else if (isArray(input)) {
+
+    if (isArray(input)) {
 //        console.log('unnestify array:', JSON.stringify(input, null, 4));
         input.forEach(function(obj) {
+            if (typeof obj === 'string') {
+                if (!output.$) {
+                    output.$ = [];
+                }
+                output.$.push(obj);
+                return;
+            }
+
             var counter = 0;
             for (var key in obj) {
                 counter++;
                 if (counter > 1) {
-                    console.log('MORE THAN 1 KEY IN AN OBJECT?!');
+                    console.log('array: MORE THAN 1 KEY IN AN OBJECT?!:', typeof obj);
                 }
                 if (obj.hasOwnProperty(key)) {
                     output[key] = unnestify(obj[key]);
@@ -48,7 +57,7 @@ function unnestify(input) {
                 output[key] = unnestify(input[key]);
             }
             if (++counter > 1) {
-                console.log('MORE THAN 1 KEY IN AN OBJECT?!');
+                console.log('object: MORE THAN 1 KEY IN AN OBJECT?!');
             }
         }
     }
