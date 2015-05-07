@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var Parse = require('s-expression');
-var isArray = require('is-array');
+var is = require('is-js');
 var R = require('ramda');
 
 function objectify(input) {
@@ -29,7 +29,7 @@ function unnestify(input, path) {
 
     if (typeof input === 'string') {
         output = input;
-    } else if (isArray(input)) {
+    } else if (is.array(input)) {
         input.forEach(function(obj) {
             if (typeof obj === 'string') {
                 if (!output.$) {
@@ -85,7 +85,7 @@ function unnestify(input, path) {
 }
 
 function stringify(input) {
-    if (isArray(input) || typeof input === 'string') {
+    if (is.array(input) || typeof input === 'string') {
         return input;
     }
     var output = '';
