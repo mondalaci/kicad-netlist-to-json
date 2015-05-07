@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 var Parse = require('s-expression');
 var is = require('is-js');
 var R = require('ramda');
