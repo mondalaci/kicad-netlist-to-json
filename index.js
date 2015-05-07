@@ -4,7 +4,7 @@ var Parse = require('s-expression');
 var is = require('is-js');
 var R = require('ramda');
 
-module.exports = (function(kicadNetlist) {
+module.exports = (function() {
 
     function objectify(input) {
         if (is.string(input)) {
@@ -96,5 +96,7 @@ module.exports = (function(kicadNetlist) {
         return output.length > 0 ? output : input;
     }
 
-    return unnestify(objectify(Parse(kicadNetlist)));
+    return function(kicadNetlist) {
+        return unnestify(objectify(Parse(kicadNetlist)));
+    }
 })();
