@@ -52,8 +52,14 @@ function unnestify(input) {
                 }
             }
         });
-    } else {
-//        console.log('unnestify object:', util.inspect(input), JSON.stringify(input, null, 4));
+
+        for (var key in output) {
+            var array = output[key];
+            if (array.length === 1) {
+                output[key] = array[0];
+            }
+        }
+    } else {  // object
         var counter = 0;
         for (var key in input) {
             if (input.hasOwnProperty(key)) {
