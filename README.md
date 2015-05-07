@@ -1,2 +1,3 @@
-# kicadnet2csv
-Kicad netlist to CSV converter
+# kicad-netlist-to-json.js
+
+Converts KiCad netlist files to JSON.
