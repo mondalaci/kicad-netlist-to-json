@@ -4,6 +4,7 @@ KiCad netlist to JSON converter.
 
 [![npm module](https://badge.fury.io/js/kicad-netlist-to-json.svg)](https://www.npmjs.org/package/kicad-netlist-to-json)
 [![dependencies](https://david-dm.org/mondalaci/kicad-netlist-to-json.svg)](https://david-dm.org/mondalaci/kicad-netlist-to-json)
+[![Build Status](https://travis-ci.org/ramda/ramda.svg?branch=master)](https://travis-ci.org/ramda/ramda)
 
 # Usage
 
