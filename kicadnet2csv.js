@@ -6,6 +6,7 @@ var Parse = require('s-expression');
 var isArray = require('is-array');
 
 function objectify(input) {
+//    input = stringify(input);
     if (typeof input === 'string') {
         return input;
     }
@@ -19,10 +20,51 @@ function objectify(input) {
 }
 
 function unnestify(input) {
-    if (!isArray()) {
-//        return unnestify()
-    }
+    input = stringify(input);
     var output = {};
+
+    if (typeof input === 'string') {
+        return input;
+    }
+    else if (isArray(input)) {
+//        console.log('unnestify array:', JSON.stringify(input, null, 4));
+        input.forEach(function(obj) {
+            var counter = 0;
+            for (var key in obj) {
+                counter++;
+                if (counter > 1) {
+                    console.log('MORE THAN 1 KEY IN AN OBJECT?!');
+                }
+                if (obj.hasOwnProperty(key)) {
+                    output[key] = unnestify(obj[key]);
+                }
+            }
+        });
+    } else {
+//        console.log('unnestify object:', util.inspect(input), JSON.stringify(input, null, 4));
+        var counter = 0;
+        for (var key in input) {
+            if (input.hasOwnProperty(key)) {
+                output[key] = unnestify(input[key]);
+            }
+            if (++counter > 1) {
+                console.log('MORE THAN 1 KEY IN AN OBJECT?!');
+            }
+        }
+    }
+
+    return output;
+}
+
+function stringify(input) {
+    if (isArray(input) || typeof input === 'string') {
+        return input;
+    }
+    var output = '';
+    for (var i=0; i in input; i++) {
+        output += input[i];
+    }
+    return output.length > 0 ? output : input;
 }
 
 var fileContent = fs.readFileSync(process.argv[2], {encoding:'utf8'});
@@ -30,4 +72,5 @@ var parsedNetlist = Parse(fileContent);
 var components = parsedNetlist[3];
 //components.shift();
 //console.log(JSON.stringify(parsedNetlist, null, 4));
-console.log(JSON.stringify(objectify(parsedNetlist), null, 4));
+//console.log(JSON.stringify(objectify(parsedNetlist), null, 4));
+console.log(JSON.stringify(unnestify(objectify(parsedNetlist)), null, 4));
