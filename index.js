@@ -18,6 +18,18 @@ module.exports = (function() {
         return output;
     }
 
+    var arrayPaths = [
+        'export.components.comp',
+        'export.libparts.libpart',
+        'export.libparts.libpart.pins',
+        'export.libparts.libpart.pins.pin',
+        'export.libparts.libpart.fields',
+        'export.libparts.libpart.fields.field',
+        'export.libraries.library',
+        'export.nets.net',
+        'export.nets.net.node'
+    ];
+
     function unnestify(input, path) {
 
         function getNewPath(key) {
@@ -51,18 +63,6 @@ module.exports = (function() {
                     }
                 }
             });
-
-            var arrayPaths = [
-                'export.components.comp',
-                'export.libparts.libpart',
-                'export.libparts.libpart.pins',
-                'export.libparts.libpart.pins.pin',
-                'export.libparts.libpart.fields',
-                'export.libparts.libpart.fields.field',
-                'export.libraries.library',
-                'export.nets.net',
-                'export.nets.net.node'
-            ];
 
             for (key in output) {
                 if (output.hasOwnProperty(key)) {
