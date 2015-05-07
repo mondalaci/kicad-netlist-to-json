@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 var path = require('path');
 var fs = require('fs');
 var kicadNetlistToJson = require('../index.js');
@@ -20,4 +21,5 @@ try {
 
 var kicadNetlist = fs.readFileSync(kicadNetlistFilename, {encoding:'utf8'});
 var kicadJson = kicadNetlistToJson(kicadNetlist);
+
 console.log(JSON.stringify(kicadJson, null, 4));
