@@ -6,7 +6,7 @@ var is = require('is-js');
 var R = require('ramda');
 
 function objectify(input) {
-    if (typeof input === 'string') {
+    if (is.string(input)) {
         return input;
     }
 
@@ -27,11 +27,11 @@ function unnestify(input, path) {
     input = stringify(input);
     var output = {};
 
-    if (typeof input === 'string') {
+    if (is.string(input)) {
         output = input;
     } else if (is.array(input)) {
         input.forEach(function(obj) {
-            if (typeof obj === 'string') {
+            if (is.string(obj)) {
                 if (!output.$) {
                     output.$ = [];
                 }
@@ -85,7 +85,7 @@ function unnestify(input, path) {
 }
 
 function stringify(input) {
-    if (is.array(input) || typeof input === 'string') {
+    if (is.array(input) || is.string(input)) {
         return input;
     }
     var output = '';
