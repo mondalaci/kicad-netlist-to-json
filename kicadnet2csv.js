@@ -36,19 +36,23 @@ function unnestify(input) {
             }
 
             for (key in obj) {
-                var objVal = unnestify(obj[key]);
-                if (!(key in output)) {
-                    output[key] = [objVal];
-                } else {
-                    output[key].push(objVal);
+                if (obj.hasOwnProperty(key)) {
+                    var objVal = unnestify(obj[key]);
+                    if (!(key in output)) {
+                        output[key] = [objVal];
+                    } else {
+                        output[key].push(objVal);
+                    }
                 }
             }
         });
 
         for (key in output) {
-            var array = output[key];
-            if (array.length === 1) {
-                output[key] = array[0];
+            if (output.hasOwnProperty(key)) {
+                var array = output[key];
+                if (array.length === 1) {
+                    output[key] = array[0];
+                }
             }
         }
     } else {  // object
