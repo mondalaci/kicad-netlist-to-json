@@ -2,7 +2,7 @@
   "name": "kicadnet2csv",
   "version": "0.0.1",
   "description": "KiCad netlist to CSV converter",
-  "main": "kicadnet2csv.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/mondalaci/kicadnet2csv.git"
