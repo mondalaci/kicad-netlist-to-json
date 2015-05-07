@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
-var util = require('util');
 var Parse = require('s-expression');
 var isArray = require('is-array');
 
