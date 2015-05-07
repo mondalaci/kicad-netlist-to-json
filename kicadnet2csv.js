@@ -36,10 +36,11 @@ function unnestify(input) {
             }
 
             for (var key in obj) {
+                var objVal = unnestify(obj[key]);
                 if (!(key in output)) {
-                    output[key] = [ unnestify(obj[key]) ];
+                    output[key] = [objVal];
                 } else {
-                    output[key].push(unnestify(obj[key]));
+                    output[key].push(objVal);
                 }
             }
         });
