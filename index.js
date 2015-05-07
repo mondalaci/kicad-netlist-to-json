@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
 var Parse = require('s-expression');
 var is = require('is-js');
 var R = require('ramda');
