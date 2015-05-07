@@ -3,6 +3,7 @@
 var fs = require('fs');
 var Parse = require('s-expression');
 var isArray = require('is-array');
+var R = require('ramda');
 
 function objectify(input) {
     if (typeof input === 'string') {
@@ -16,7 +17,12 @@ function objectify(input) {
     return output;
 }
 
-function unnestify(input) {
+function unnestify(input, path) {
+
+    function getNewPath(key) {
+        return path + (path ? '.' : '') + key;
+    }
+
     var key;
     input = stringify(input);
     var output = {};
@@ -35,7 +41,7 @@ function unnestify(input) {
 
             for (key in obj) {
                 if (obj.hasOwnProperty(key)) {
-                    var objVal = unnestify(obj[key]);
+                    var objVal = unnestify(obj[key], getNewPath(key));
                     if (!(key in output)) {
                         output[key] = [objVal];
                     } else {
@@ -45,18 +51,32 @@ function unnestify(input) {
             }
         });
 
+        var arrayPaths = [
+            'export.components.comp',
+            'export.libparts.libpart',
+            'export.libparts.libpart.pins',
+            'export.libparts.libpart.pins.pin',
+            'export.libparts.libpart.fields',
+            'export.libparts.libpart.fields.field',
+            'export.libraries.library',
+            'export.nets.net',
+            'export.nets.net.node'
+        ];
+
         for (key in output) {
             if (output.hasOwnProperty(key)) {
-                var array = output[key];
-                if (array.length === 1) {
-                    output[key] = array[0];
+                if (!R.contains(getNewPath(key), arrayPaths)) {
+                    var array = output[key];
+                    if (array.length === 1) {
+                        output[key] = array[0];
+                    }
                 }
             }
         }
     } else {  // object
         for (key in input) {
             if (input.hasOwnProperty(key)) {
-                output[key] = unnestify(input[key]);
+                output[key] = unnestify(input[key], getNewPath(key));
             }
         }
     }
@@ -77,4 +97,4 @@ function stringify(input) {
 
 var fileContent = fs.readFileSync(process.argv[2], {encoding:'utf8'});
 var parsedNetlist = Parse(fileContent);
-console.log(JSON.stringify(unnestify(objectify(parsedNetlist)), null, 4));
+console.log(JSON.stringify(unnestify(objectify(parsedNetlist), ''), null, 4));

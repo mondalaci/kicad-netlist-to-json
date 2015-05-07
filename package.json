@@ -15,6 +15,7 @@
   "homepage": "https://github.com/mondalaci/kicadnet2csv",
   "dependencies": {
     "is-array": "^1.0.1",
+    "ramda": "^0.13.0",
     "s-expression": "^3.0.1"
   }
 }
