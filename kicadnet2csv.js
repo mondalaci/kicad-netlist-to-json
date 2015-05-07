@@ -22,10 +22,8 @@ function unnestify(input) {
     var output = {};
 
     if (typeof input === 'string') {
-        return input;
-    }
-
-    if (isArray(input)) {
+        output = input;
+    } else if (isArray(input)) {
         input.forEach(function(obj) {
             if (typeof obj === 'string') {
                 if (!output.$) {
