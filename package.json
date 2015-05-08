@@ -1,6 +1,6 @@
 {
   "name": "kicad-netlist-to-json",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "KiCad netlist (.net) to JSON converter",
   "keywords": [
     "kicad",
